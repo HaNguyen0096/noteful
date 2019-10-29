@@ -56,8 +56,6 @@ export default class AddFolder extends Component {
       .then(folder => {
         this.context.addFolder(folder)
         this.props.history.push(`/folder/${folder.id}`)
-        console.log(folder.id);
-        console.log(folder.name);
       })
       .catch(error => {
         console.error({ error })
@@ -90,5 +88,5 @@ export default class AddFolder extends Component {
 }
 
 AddFolder.propTypes = {
-  value: PropTypes.number.isRequired
+  value: PropTypes.string.isRequired
 };
