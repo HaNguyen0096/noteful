@@ -39,7 +39,7 @@ export default class AddFolder extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const folder = {
-      name: e.target['folder-name'].value
+      folder_name: e.target['folder-name'].value
     }
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'POST',
@@ -55,7 +55,7 @@ export default class AddFolder extends Component {
       })
       .then(folder => {
         this.context.addFolder(folder)
-        this.props.history.push(`/folder/${folder.id}`)
+        this.props.history.push(`/folders/${folder.id}`)
       })
       .catch(error => {
         console.error({ error })
@@ -77,7 +77,8 @@ export default class AddFolder extends Component {
             {this.state.FolderName.touched && (<ValidationError message={nameError} />)}
           </div>
           <div className='buttons'>
-            <button type='submit' disabled={this.validateFolderName()}>
+            <button type='submit' disabled={this.validateFolderName()}
+             onClick={() => this.props.history.goBack()}>
               Add folder
             </button>
           </div>

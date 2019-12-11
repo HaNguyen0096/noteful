@@ -16,7 +16,6 @@ export default class Note extends React.Component {
   handleClickDelete = e => {
     e.preventDefault()
     const noteId = this.props.id
-
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
@@ -26,11 +25,10 @@ export default class Note extends React.Component {
       .then(res => {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
-        return res.json()
+        window.location.reload();
       })
       .then(() => {
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
         this.props.onDeleteNote(noteId)
       })
       .catch(error => {
@@ -71,6 +69,7 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes = {
+  onDeleteNote: PropTypes.func.isRequired,
   id: PropTypes.string,
   name: PropTypes.string,
   modified: PropTypes.string
