@@ -72,5 +72,5 @@ Note.propTypes = {
   onDeleteNote: PropTypes.func.isRequired,
   id: PropTypes.string,
   name: PropTypes.string,
-  modified: PropTypes.string
+  modified: PropTypes.date
 };
